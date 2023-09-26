@@ -8,10 +8,8 @@ public class Carro {
     private int anoFabricacao;
     public boolean retorno;
     public boolean valModelo;
+    public boolean valMarca;
 
-    public boolean isValidarModelo() {
-        return this.valModelo;
-    }
 
     public Carro() {
     }
@@ -26,7 +24,17 @@ public class Carro {
         return marca;
     }
     public void setMarca(String marca) {
+        this.valMarca = marca.matches("[a-zA-Z]+");
+        if (valMarca == false) {
+            JOptionPane.showMessageDialog(null,
+                    "Digite um modelo sem CARCTERES ESPECIAIS!!",
+                    "ERRO!!",
+                    JOptionPane.ERROR_MESSAGE);
+            retorno = false;
+        } else {
             this.marca = marca;
+            retorno = true;
+        }
     }
 
     public String getModelo() {
@@ -60,6 +68,14 @@ public class Carro {
             this.anoFabricacao = 2023 - anoFabricacao;
             retorno = true;
         }
+    }
+
+    public boolean isValidarModelo() {
+        return this.valModelo;
+    }
+
+    public boolean isValidadrMarca() {
+        return this.valMarca;
     }
 
     public String mostrarDados() {

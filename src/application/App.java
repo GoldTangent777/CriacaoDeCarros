@@ -8,12 +8,14 @@ public class App {
         int respostaUsuario;
 
         do {
-            Carro carro = new Carro();
+                Carro carro = new Carro();
+            do {
                 String marca = JOptionPane.showInputDialog(null,
                         "Digite o nome da marca do Veiculo: ",
                         "MARCA",
                         JOptionPane.PLAIN_MESSAGE);
                 carro.setMarca(marca);
+            } while (carro.retorno == false);
 
             do {
                 String modelo = JOptionPane.showInputDialog(null,
