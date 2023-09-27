@@ -1,6 +1,7 @@
 package entites;
 
 import javax.swing.*;
+import java.util.Calendar;
 
 public class Carro {
     private String marca;
@@ -54,8 +55,13 @@ public class Carro {
         }
     }
 
+    Calendar ano = Calendar.getInstance();
+
     public int getAnoFabricacao() {
-        return anoFabricacao;
+        int anoAtual = ano.get(Calendar.YEAR);
+        int id = anoAtual - this.anoFabricacao;
+        this.anoFabricacao = id;
+        return id;
     }
     public void setAnoFabricacao(int anoFabricacao) {
         if (anoFabricacao < 0000) {
@@ -64,8 +70,8 @@ public class Carro {
                         "IDADE INVáLIDA",
                         JOptionPane.ERROR_MESSAGE);
                 retorno = false;
-        } else {
-            this.anoFabricacao = 2023 - anoFabricacao;
+        } else{
+            this.anoFabricacao = anoFabricacao;
             retorno = true;
         }
     }
@@ -81,6 +87,6 @@ public class Carro {
     public String mostrarDados() {
         return "Marca: "+marca+
                 "\nModelo: "+modelo+
-                "\nAno de Fabricação: "+anoFabricacao;
+                "\nAno de Fabricação: "+getAnoFabricacao();
     }
 }
