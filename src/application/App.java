@@ -1,6 +1,7 @@
 package application;
 
 import entites.Carro;
+
 import javax.swing.*;
 
 public class App {
@@ -8,14 +9,14 @@ public class App {
         int respostaUsuario;
 
         do {
-                Carro carro = new Carro();
+            Carro carro = new Carro();
             do {
                 String marca = JOptionPane.showInputDialog(null,
                         "Digite o nome da marca do Veiculo: ",
                         "MARCA",
                         JOptionPane.PLAIN_MESSAGE);
                 carro.setMarca(marca);
-            } while (carro.retorno == false);
+            } while (carro.valMarca == false);
 
             do {
                 String modelo = JOptionPane.showInputDialog(null,
@@ -23,7 +24,7 @@ public class App {
                         "MODELO",
                         JOptionPane.PLAIN_MESSAGE);
                 carro.setModelo(modelo);
-            } while (carro.retorno == false);
+            } while (carro.valModelo == false);
 
             do {
                 String ano = JOptionPane.showInputDialog(null,
@@ -32,10 +33,10 @@ public class App {
                         JOptionPane.PLAIN_MESSAGE);
                 Integer anoFabricao = Integer.parseInt(ano);
                 carro.setAnoFabricacao(anoFabricao);
-            } while (carro.retorno == false);
+            } while (carro.valAno == false);
 
             JOptionPane.showMessageDialog(null,
-                    "Dados do Veiculo: \n"+carro.mostrarDados(),
+                    "Dados do Veiculo: \n" + carro.mostrarDados(),
                     "DADOS?",
                     JOptionPane.PLAIN_MESSAGE);
 

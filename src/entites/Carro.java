@@ -7,9 +7,9 @@ public class Carro {
     private String marca;
     private String modelo;
     private int anoFabricacao;
-    public boolean retorno;
     public boolean valModelo;
     public boolean valMarca;
+    public boolean valAno;
 
 
     public Carro() {
@@ -24,6 +24,7 @@ public class Carro {
     public String getMarca() {
         return marca;
     }
+
     public void setMarca(String marca) {
         this.valMarca = marca.matches("[a-zA-Z]+");
         if (valMarca == false) {
@@ -31,16 +32,15 @@ public class Carro {
                     "Digite um modelo sem CARCTERES ESPECIAIS!!",
                     "ERRO!!",
                     JOptionPane.ERROR_MESSAGE);
-            retorno = false;
         } else {
             this.marca = marca;
-            retorno = true;
         }
     }
 
     public String getModelo() {
         return modelo;
     }
+
     public void setModelo(String modelo) {
         this.valModelo = modelo.matches("[a-zA-Z]+");
         if (valModelo == false) {
@@ -48,10 +48,8 @@ public class Carro {
                     "Digite um modelo sem CARCTERES ESPECIAIS!!",
                     "ERRO!!",
                     JOptionPane.ERROR_MESSAGE);
-            retorno = false;
         } else {
             this.modelo = modelo;
-            retorno = true;
         }
     }
 
@@ -63,16 +61,17 @@ public class Carro {
         this.anoFabricacao = id;
         return id;
     }
+
     public void setAnoFabricacao(int anoFabricacao) {
-        if (anoFabricacao < 0000) {
-                JOptionPane.showMessageDialog(null,
-                        "Digite uma idade válida",
-                        "IDADE INVáLIDA",
-                        JOptionPane.ERROR_MESSAGE);
-                retorno = false;
-        } else{
+        if (anoFabricacao > 0000) {
+            this.valAno = true;
             this.anoFabricacao = anoFabricacao;
-            retorno = true;
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Digite uma idade válida",
+                    "IDADE INVáLIDA",
+                    JOptionPane.ERROR_MESSAGE);
+            this.valAno = false;
         }
     }
 
@@ -84,9 +83,13 @@ public class Carro {
         return this.valMarca;
     }
 
+    public boolean isValidarAno() {
+        return this.valAno;
+    }
+
     public String mostrarDados() {
-        return "Marca: "+marca+
-                "\nModelo: "+modelo+
-                "\nAno de Fabricação: "+getAnoFabricacao();
+        return "Marca: " + marca +
+                "\nModelo: " + modelo +
+                "\nAno de Fabricação: " + getAnoFabricacao();
     }
 }
